@@ -1,39 +1,60 @@
+using System;
 using UnityEngine;
 
 public class Glider : MonoBehaviour
 {
-    public float moveSpeed = 10;
-    public float maxMoveSpeed = 30;
-    public float turnSpeed = 100; 
-    public float acceleration = 1;
-    public float drag;
-    public float minGlideSpeed = 5;
-    float xRot;
-    float yRot;
-    public Vector2 turnDir;
+    [Header("Movement")]
+    public float moveSpeed = 5;
+    public float minMoveSpeed = 3;
+    public float maxMoveSpeed = 20;
     
-    public void Turn( Vector2 dir )
+    public float downAcceleration = 10;
+    public float upDeceleration = 10;
+    public float drag = 1;
+    
+    [Header("Turning")]
+    public float vTurnSpeed = 100;
+    public float hTurnSpeed = 100;
+    public float stallDiveSpeed = 50;
+    
+    [HideInInspector]public Vector2 turnDir;
+    const float maxTurnAngle = 89.999f;
+    float vAngle;
+    float hAngle;
+    
+    
+    public void Turn(Vector2 dir)
     {
         turnDir = dir;
     }
-    
-    private void FixedUpdate()
+
+    private void Start()
     {
-        xRot += turnDir.x * turnSpeed * Time.deltaTime; 
-        yRot += turnDir.y * turnSpeed * Time.deltaTime;
-        yRot = Mathf.Clamp(yRot, -90, 90);
-        transform.eulerAngles = new Vector3(yRot, xRot);
+        vAngle = transform.eulerAngles.x;
+        hAngle = transform.eulerAngles.y;
+    }
 
-        float xDot = Vector3.Dot(Vector3.down, transform.forward);
-        moveSpeed += xDot * acceleration *  Time.deltaTime;
-        moveSpeed *= 1 - drag * Time.deltaTime;
-        moveSpeed = Mathf.Clamp(moveSpeed, 0, maxMoveSpeed);
+    private void Update()
+    {
+        float glidePercent = Mathf.InverseLerp( 5, 10, moveSpeed );
 
-        if (moveSpeed < minGlideSpeed)
-        {
-            yRot += 90 * Time.deltaTime;
-        }
+        if (turnDir.y > 0) vAngle += turnDir.y * vTurnSpeed * Time.deltaTime;       // turn down
+        else vAngle += turnDir.y * vTurnSpeed * glidePercent * Time.deltaTime;      // turn up
+        vAngle += (1 -glidePercent) * stallDiveSpeed * Time.deltaTime;              // nose dive on low speed
+        vAngle = Mathf.Clamp(vAngle, -maxTurnAngle, maxTurnAngle);         // no back flips
         
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        hAngle += turnDir.x * hTurnSpeed * Time.deltaTime;
+        hAngle = Mathf.Repeat( hAngle, 360 );
+        
+        float downPercent = Vector3.Dot( transform.forward, Vector3.down );
+        if(downPercent > 0)moveSpeed += downPercent * downAcceleration * Time.deltaTime;
+        else moveSpeed += downPercent * upDeceleration * Time.deltaTime;
+
+        moveSpeed -= drag * Time.deltaTime;
+        moveSpeed = Mathf.Clamp( moveSpeed, minMoveSpeed, maxMoveSpeed );
+        
+
+        transform.eulerAngles  = new Vector3( vAngle, hAngle, 0 );
+        transform.position += transform.forward * moveSpeed * Time.deltaTime; 
     }
 }

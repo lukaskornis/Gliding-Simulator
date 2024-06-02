@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: fc1bc0f1f1c0ed842846d7964fe14ced
+timeCreated: 1518251072
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 110679
+  packageName: Low Polygon_Animal
+  packageVersion: 1.0
+  assetPath: Assets/_Gloomy_Animal/Script/CharacterSelect.cs
+  uploadId: 230390

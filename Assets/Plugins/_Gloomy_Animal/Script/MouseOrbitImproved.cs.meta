@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 43f2e31bc9878014e8435f20535f6b18
+timeCreated: 1518669986
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 110679
+  packageName: Low Polygon_Animal
+  packageVersion: 1.0
+  assetPath: Assets/_Gloomy_Animal/Script/MouseOrbitImproved.cs
+  uploadId: 230390

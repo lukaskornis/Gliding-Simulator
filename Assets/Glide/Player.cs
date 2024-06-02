@@ -1,54 +1,26 @@
-using System;
-using Unity.Collections;
-using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
-    private NetworkVariable<Vector2> turnDir = new(Vector2.zero,writePerm:NetworkVariableWritePermission.Owner);
-    NetworkVariable< Vector3> pos = new(Vector3.zero,writePerm:NetworkVariableWritePermission.Owner);
-    private NetworkVariable<FixedString32Bytes> name = new();
+    public static UnityEvent OnDie = new();
+    
     private Glider glider;
+    private GliderVisuals visuals;
     
     private void Start()
     {
         glider = GetComponent<Glider>();
-        if (IsOwner)
-        {
-            Inputs.OnTurn.AddListener(glider.Turn);
-            FlyCam.instance.target = transform;
-        }
-    }
-
-    public override void OnNetworkSpawn()
-    {
-        if (IsServer)
-        {
-            print( "server spawned" );
-            name.Value = $"Player {OwnerClientId}";
-        }
+        visuals = GetComponent<GliderVisuals>();
         
-        gameObject.name = name.Value.ToString();
-        
-        if (IsOwner)
-        {
-            transform.position = Vector3.up * 100f;
-            Inputs.OnTurn.AddListener(dir =>
-            {
-                turnDir.Value = dir;
-            });
-        } else
-        {
-            turnDir.OnValueChanged += (_, value) => glider.Turn(value);
-            transform.position = pos.Value;
-        }
+        Inputs.OnTurn.AddListener(glider.Turn);
+        FlyCam.instance.target = transform;
     }
-
-    private void Update()
+    
+    
+    private void OnCollisionEnter(Collision other)
     {
-        if (IsOwner)
-        {
-            pos.Value = transform.position;
-        }
+        visuals.Die();
+        OnDie.Invoke();
     }
 }
