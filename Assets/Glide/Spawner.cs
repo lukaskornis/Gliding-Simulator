@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +9,12 @@ public class Spawner : MonoBehaviour
     public int count = 10;
     public bool autoParent = true;
 
-    private void Start()=> Spawn();
+
+    private void Start()
+    {
+        Random.InitState(100);
+        Spawn(); 
+    }
 
     public void Spawn()
     {

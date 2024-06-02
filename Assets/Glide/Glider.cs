@@ -17,7 +17,7 @@ public class Glider : MonoBehaviour
         turnDir = dir;
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         xRot += turnDir.x * turnSpeed * Time.deltaTime; 
         yRot += turnDir.y * turnSpeed * Time.deltaTime;
