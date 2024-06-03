@@ -8,12 +8,25 @@ public class WindPlayer : MonoBehaviour
 {
     public float nearObstacleShakeAngle = 5;
     
+    private AudioSource windSource;
+    [SerializeField] AnimationCurve volumeBySpeedCurve;
+    Glider glider;
+    
     private void Start()
     {
+        windSource = GetComponent<AudioSource>();
+        glider = FindObjectOfType<Glider>();
+        
         Proximeter.onObstacleCountChanged.AddListener( OnObstacleCountChanged );
     }
 
-    
+    private void Update()
+    {
+        float volume = volumeBySpeedCurve.Evaluate(glider.SpeedPercent);
+        windSource.volume = volume;
+    }
+
+
     private void OnObstacleCountChanged(float percent)
     {
         if (percent > 0)

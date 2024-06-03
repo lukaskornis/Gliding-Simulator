@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     public AnimationCurve cameraShakeBySpeed;
     public float shakeAngle = 3;
+
+    public GameObject crashEffect;
     public float crashShakeAngle = 20;
     
     private Glider glider;
@@ -33,8 +35,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        var contact = other.GetContact(0);
+        Instantiate( crashEffect, contact.point, Quaternion.LookRotation(contact.normal) );
         visuals.Die();
         OnDie.Invoke();
         CameraShake.Shake(crashShakeAngle);
     }
+    
 }

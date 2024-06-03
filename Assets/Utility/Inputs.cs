@@ -5,12 +5,14 @@ using UnityEngine.Events;
 public class Inputs : UnitySingleton<Inputs>
 {
     public static UnityEvent<Vector2> OnTurn = new();
-    Actions actions;
+    public static UnityEvent OnPause = new();
+    InputActions actions;
     
     private void Start()
     {
-        actions = new Actions();
+        actions = new InputActions();
         actions.Enable();
+        actions.Play.Pause.performed += _ => OnPause.Invoke();
     } 
   
     private void FixedUpdate()

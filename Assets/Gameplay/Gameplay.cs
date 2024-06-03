@@ -11,7 +11,7 @@ public class Gameplay : UnitySingleton<Gameplay>
     public float respawnTime = 1;
     public GameObject playerPrefab;
 
-    private void Start()
+    private void Awake()
     {
         Player.OnDie.AddListener(RespawnRoutine);
         Instantiate(playerPrefab, spawnPoint.position,spawnPoint.rotation);
