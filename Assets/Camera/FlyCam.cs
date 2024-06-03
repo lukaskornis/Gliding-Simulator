@@ -1,22 +1,23 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FlyCam : UnitySingleton<FlyCam>
 {
     public Transform target;
     
-    public float speed = 1.0f;
-    public float rotSpeed = 1.0f;
+    [FormerlySerializedAs("speed")] public float moveLerpSpeed = 1.0f;
+    [FormerlySerializedAs("rotSpeed")] public float rotLerpSpeed = 1.0f;
     [Header("Field of View")]
-    public Vector2 fovSpeeds = new Vector2(10, 20);
-    public Vector2 fovRange = new Vector2(60, 100);
+    public Vector2 fovSpeeds = new(10, 20);
+    public Vector2 fovRange = new(60, 100);
     public float fowSmoothSpeed = 1.0f;
-    public AnimationCurve fowCurve;
     
     private Vector3 lastPos;
     private Vector3 targetPos;
     private Quaternion targetRot;
     private Camera cam;
+    
     
     private void Start()
     {
@@ -32,13 +33,14 @@ public class FlyCam : UnitySingleton<FlyCam>
         }
         
         lastPos = transform.position;
-        transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * speed);
+        float currentSpeed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
         
-        float moveSpeed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
-        float fovPower = Mathf.InverseLerp(fovSpeeds.x, fovSpeeds.y, moveSpeed);
+        transform.position = Vector3.Lerp(lastPos, targetPos, moveLerpSpeed * Time.deltaTime);
+  
+        float fovPower = Mathf.InverseLerp(fovSpeeds.x, fovSpeeds.y, currentSpeed);
         float fov = Mathf.Lerp(fovRange.x, fovRange.y, fovPower);
         cam.fieldOfView = Mathf.Lerp( cam.fieldOfView, fov, fowSmoothSpeed * Time.deltaTime );
         
-        transform.rotation = Quaternion.Lerp(transform.rotation,targetRot, Time.deltaTime * rotSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation,targetRot, Time.deltaTime * rotLerpSpeed);
     }
 }

@@ -241,15 +241,15 @@ GameObject:
   m_Component:
   - component: {fileID: 343911035}
   - component: {fileID: 343911038}
-  - component: {fileID: 343911037}
   - component: {fileID: 343911036}
+  - component: {fileID: 343911039}
   m_Layer: 5
   m_Name: Score Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &343911035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -287,29 +287,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &343911037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343911034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &343911038
 Canvas:
   m_ObjectHideFlags: 0
@@ -328,11 +305,24 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &343911039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343911034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef23261e121464688bc59a056e0cdaed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreLabel: {fileID: 2080132729}
 --- !u!1 &507324609
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +447,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  intervalByProximity:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.013309671
+      outSlope: 0.013309671
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.56644243
+    - serializedVersion: 3
+      time: 0.36043674
+      value: 1.00265
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0041434877
+      outSlope: -0.0041434877
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scoreSoundIntervalRange: {x: 0.2, y: 0.05}
   scoreSoundInterval: 0.05
   scoreSound: {fileID: 8300000, guid: 3227dad9bc19e48f9a5716747868c4da, type: 3}
 --- !u!4 &597107167
@@ -643,17 +667,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 3
-  rotSpeed: 6
+  moveLerpSpeed: 3
+  rotLerpSpeed: 6
   fovSpeeds: {x: 10, y: 25}
   fovRange: {x: 60, y: 100}
   fowSmoothSpeed: 5
-  fowCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &656826148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,7 +1318,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1703,6 +1721,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
   m_PrefabInstance: {fileID: 5659378554744311903}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2080132729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4224245974930642918, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
+  m_PrefabInstance: {fileID: 5659378554744311903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5659378554744311903
 PrefabInstance:
   m_ObjectHideFlags: 0

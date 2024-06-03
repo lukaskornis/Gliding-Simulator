@@ -337,9 +337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388ef4754587b4ec2a275531f01fd6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 7
   rayCount: 16
   raysHit: 0
+  minDistance: 0
+  totalProximity: 0
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128

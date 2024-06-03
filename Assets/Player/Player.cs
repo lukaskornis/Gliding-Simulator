@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// </summary>
 public class Player : MonoBehaviour
 {
-    public static UnityEvent OnDie = new();
+    public static readonly UnityEvent OnCrash = new();
 
     public AnimationCurve cameraShakeBySpeed;
     public float shakeAngle = 3;
@@ -37,8 +37,9 @@ public class Player : MonoBehaviour
     {
         var contact = other.GetContact(0);
         Instantiate( crashEffect, contact.point, Quaternion.LookRotation(contact.normal) );
-        visuals.Die();
-        OnDie.Invoke();
+        visuals.Crash();
+        OnCrash.Invoke();
+        Destroy( gameObject );
         CameraShake.Shake(crashShakeAngle);
     }
     

@@ -17,7 +17,7 @@ public class WindPlayer : MonoBehaviour
         windSource = GetComponent<AudioSource>();
         glider = FindObjectOfType<Glider>();
         
-        Proximeter.onObstacleCountChanged.AddListener( OnObstacleCountChanged );
+        Proximeter.onProximityChanged.AddListener( OnObstacleCountChanged );
     }
 
     private void Update()

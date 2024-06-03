@@ -22,12 +22,11 @@ public class GliderVisuals : MonoBehaviour
         visuals.transform.localRotation = Quaternion.Lerp(visuals.transform.localRotation, targetAngle, Time.deltaTime * leanSpeed);
     }
     
-    public void Die()
+    public void Crash()
     {
         for (int i = 0; i < 10; i++)
         {
             Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
-        Destroy( gameObject );
     }
 }

@@ -1,29 +1,32 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreCounter : MonoBehaviour
 {
+    public static UnityEvent<int> OnScoreChanged = new();
     public int score;
-    float percent;
+    float proximity;
 
-    [Min(0.01f)]public float scoreSoundInterval = 0.1f;
+    [SerializeField]AnimationCurve intervalByProximity;
+    [Min(0.01f)]public Vector2 scoreSoundIntervalRange = Vector2.one;
+    public float scoreSoundInterval;
+    
     [SerializeField]private AudioClip scoreSound;
     
     private void Start()
     {
-        Proximeter.onObstacleCountChanged.AddListener( OnObstacleCountChanged );
+        Proximeter.onProximityChanged.AddListener( p => proximity = p );
         ScoreSoundRoutine();
     }
 
     private void Update()
     {
-         score += (int)(percent * 10);
-    }
-
-
-    private void OnObstacleCountChanged(float percent)
-    {
-        this.percent = percent;
+         score += (int)(proximity * 10);
+         OnScoreChanged.Invoke(score);
+         
+         var t = intervalByProximity.Evaluate(proximity);
+         scoreSoundInterval = Mathf.Lerp(scoreSoundIntervalRange.x, scoreSoundIntervalRange.y, t);
+         print (proximity);
     }
 
     async void ScoreSoundRoutine()
@@ -31,7 +34,7 @@ public class ScoreCounter : MonoBehaviour
         while (true)
         {
             await new WaitForSeconds(scoreSoundInterval);
-            if(percent > 0)Audio.PlayClip(scoreSound);
+            if(proximity > 0)Audio.PlayClip(scoreSound);
         }
     }
 }

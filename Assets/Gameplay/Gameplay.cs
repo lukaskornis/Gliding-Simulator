@@ -13,7 +13,7 @@ public class Gameplay : UnitySingleton<Gameplay>
 
     private void Awake()
     {
-        Player.OnDie.AddListener(RespawnRoutine);
+        Player.OnCrash.AddListener(RespawnRoutine);
         Instantiate(playerPrefab, spawnPoint.position,spawnPoint.rotation);
     }
 

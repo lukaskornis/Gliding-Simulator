@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,5 +8,25 @@ using UnityEngine;
 public class ScoreCounterUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreLabel;
-    
+    Proximeter proximeter;
+    Glider glider;
+    Canvas canvas;
+
+    private void Start()
+    {
+        proximeter = Proximeter.Instance;
+        glider = FindObjectOfType<Glider>();
+        canvas = GetComponent<Canvas>();
+        ScoreCounter.OnScoreChanged.AddListener(UpdateScore);
+    }
+
+    private void Update()
+    {
+        //var textPos =
+    }
+
+    private void UpdateScore(int score)
+    {
+        scoreLabel.text = score.ToString();
+    }
 }
