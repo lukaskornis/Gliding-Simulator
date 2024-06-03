@@ -227,6 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba72e8d7316a4386b2b98e0aecd9d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frequency: 15
+  amplitude: 0.5
+  decay: 50
+  angleOffset: {x: 0.5, y: 1, z: 0}
 --- !u!1 &507324609
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +325,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &597107165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597107167}
+  - component: {fileID: 597107166}
+  m_Layer: 0
+  m_Name: Score Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &597107166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597107165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611f699a6fdc0407fab155d47a29ef8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreSoundInterval: 0.1
+  scoreSound: {fileID: 8300000, guid: 3227dad9bc19e48f9a5716747868c4da, type: 3}
+--- !u!4 &597107167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597107165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656826143
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1903359785}
   - component: {fileID: 1903359786}
+  - component: {fileID: 1903359787}
   m_Layer: 0
   m_Name: Audio System
   m_TagString: Untagged
@@ -786,6 +838,19 @@ MonoBehaviour:
   audioMixerGroup: {fileID: 0}
   globalSource: {fileID: 0}
   mixer: {fileID: 24100000, guid: b2c9444c7565c4c1294a62cb4ef4befb, type: 2}
+--- !u!114 &1903359787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903359784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697bc23cdf0ee4c79b5ec5c2759881c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearObstacleShakeAngle: 10
 --- !u!1 &2002350491
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,3 +922,4 @@ SceneRoots:
   - {fileID: 1118276262}
   - {fileID: 1903359785}
   - {fileID: 910447662}
+  - {fileID: 597107167}

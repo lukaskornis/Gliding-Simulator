@@ -7,6 +7,7 @@ public class Glider : MonoBehaviour
     public float moveSpeed = 5;
     public float minMoveSpeed = 3;
     public float maxMoveSpeed = 20;
+    public float SpeedPercent => Mathf.InverseLerp( 0, maxMoveSpeed, moveSpeed );
     
     public float downAcceleration = 10;
     public float upDeceleration = 10;
