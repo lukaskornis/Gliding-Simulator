@@ -3,9 +3,9 @@ A C# Unity-based gliding prototype featuring real-time physics simulation and pr
 
 [Try WebGL demo!](https://play.unity.com/en/games/5390db2c-4c1c-43c9-81f8-eb569195efc3/glide10)
 
-<img height="200" alt="paveikslas" src="https://github.com/user-attachments/assets/4fbf8a36-b843-45d2-81c9-73ce4c3cf2ae" />
-<img height="200" alt="paveikslas" src="https://github.com/user-attachments/assets/e49d82e2-e16a-4bce-8776-8585aebbbe19" />
-<img height="200" alt="paveikslas" src="https://github.com/user-attachments/assets/be139067-331a-4708-88ce-9842dc873bba" />
+<img height="150" alt="paveikslas" src="https://github.com/user-attachments/assets/4fbf8a36-b843-45d2-81c9-73ce4c3cf2ae" />
+<img height="150" alt="paveikslas" src="https://github.com/user-attachments/assets/e49d82e2-e16a-4bce-8776-8585aebbbe19" />
+<img height="150" alt="paveikslas" src="https://github.com/user-attachments/assets/be139067-331a-4708-88ce-9842dc873bba" />
 
 **Physics-Based Movement**
 - Custom glider physics with speed-dependent turning mechanics
