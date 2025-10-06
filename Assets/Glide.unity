@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0.3001513, g: 0.5508764, b: 0.6698113, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -305,7 +302,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -348,9 +345,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507324609}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -400,8 +396,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!4 &507324611
 Transform:
   m_ObjectHideFlags: 0
@@ -729,6 +729,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -601346455682088157, guid: b2c9444c7565c4c1294a62cb4ef4befb, type: 2}
   m_audioClip: {fileID: 8300000, guid: 83ccebdda4c8647aebd9c5cd7fd9cb76, type: 3}
+  m_Resource: {fileID: 8300000, guid: 83ccebdda4c8647aebd9c5cd7fd9cb76, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.284
   m_Pitch: 1
@@ -892,6 +893,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!1 &719371887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1194,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1292,7 +1297,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 400, y: 300}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1790,23 +1795,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99581295
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.091414735
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -15.4
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1822,7 +1827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3940906117296941786, guid: 5c0839cbe56c34d108d48dd86365fe0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 10.49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
